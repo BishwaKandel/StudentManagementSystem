@@ -1,0 +1,53 @@
+﻿@model StudentManagementSystem.Models.Enrollment
+
+@{
+    ViewData["Title"] = "Create Enrollment";
+}
+
+<h1>Create Enrollment</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="StudentID" class="form-label required"></label>
+                <select asp-for="StudentID" class="form-select" asp-items="ViewBag.StudentID">
+                    <option value="">-- Select Student --</option>
+                </select>
+                <span asp-validation-for="StudentID" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="CourseID" class="form-label required"></label>
+                <select asp-for="CourseID" class="form-select" asp-items="ViewBag.CourseID">
+                    <option value="">-- Select Course --</option>
+                </select>
+                <span asp-validation-for="CourseID" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="EnrollmentDate" class="form-label required"></label>
+                <input asp-for="EnrollmentDate" class="form-control" type="date" />
+                <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .required:after {
+        content: " *";
+        color: red;
+    }
+</style>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
